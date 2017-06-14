@@ -46,16 +46,19 @@ chrome.storage.sync.get(["ToggleVoteArrows"], function(items){
 function checkboxChanged() {
 	var checkbox = document.getElementById("enableSidebarCheckbox");
 	chrome.storage.sync.set({ "ToggleSidebar": checkbox.checked });
+	UpdateTab();
 }
 
 function thumbnailsChanged() {
 	var checkbox = document.getElementById("enableThumbnailsCheckbox");
 	chrome.storage.sync.set({ "ToggleThumbnails": checkbox.checked });
+	UpdateTab();
 }
 
 function voteArrowsChanged() {
 	var checkbox = document.getElementById("enableVoteArrowsCheckbox");
 	chrome.storage.sync.set({ "ToggleVoteArrows": checkbox.checked });
+	UpdateTab();
 }
 
 function ReloadTab() {
@@ -64,6 +67,17 @@ function ReloadTab() {
 		var tab = tabs[0];
 		if (tab.url.includes("reddit")) {
 			var code = 'window.location.reload();';
+			chrome.tabs.executeScript(tab.id, {code: code});
+		}
+	});
+}
+
+function UpdateTab() {
+	chrome.tabs.query({ active: true,lastFocusedWindow: true },
+	function(tabs) {
+		var tab = tabs[0];
+		if (tab.url.includes("reddit")) {
+			var code = 'Update();';
 			chrome.tabs.executeScript(tab.id, {code: code});
 		}
 	});
