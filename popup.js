@@ -79,4 +79,20 @@ function Update(){
       }
     }
   });
+
+  chrome.storage.sync.get(["ToggleRecommendedLinks"], function(items){
+  if (items["ToggleRecommendedLinks"]) {
+      if (typeof $ !== 'undefined') {
+        $( ".recommended-link" ).each(function(index) {
+          $(this).hide();
+        });
+      }
+    } else {
+      if (typeof $ !== 'undefined') {
+        $( ".recommended-link" ).each(function(index) {
+          $(this).show();
+        });
+      }
+    }
+  });
 }

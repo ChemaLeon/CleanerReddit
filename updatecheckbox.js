@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	document.querySelector('#enableSidebarCheckbox').addEventListener('change', checkboxChanged);
 	document.querySelector('#enableThumbnailsCheckbox').addEventListener('change', thumbnailsChanged);
 	document.querySelector('#enableVoteArrowsCheckbox').addEventListener('change', voteArrowsChanged);
+	document.querySelector('#enableRecommendedLinksCheckbox').addEventListener('change', recommendedLinksChanged);
 });
 
 chrome.storage.sync.get(["ToggleSidebar"], function(items){
@@ -43,6 +44,11 @@ chrome.storage.sync.get(["ToggleVoteArrows"], function(items){
 	checkbox.checked = items["ToggleVoteArrows"];
 });
 
+chrome.storage.sync.get(["ToggleRecommendedLinks"], function(items){
+	var checkbox = document.getElementById("enableRecommendedLinksCheckbox");
+	checkbox.checked = items["ToggleRecommendedLinks"];
+});
+
 function checkboxChanged() {
 	var checkbox = document.getElementById("enableSidebarCheckbox");
 	chrome.storage.sync.set({ "ToggleSidebar": checkbox.checked });
@@ -58,6 +64,12 @@ function thumbnailsChanged() {
 function voteArrowsChanged() {
 	var checkbox = document.getElementById("enableVoteArrowsCheckbox");
 	chrome.storage.sync.set({ "ToggleVoteArrows": checkbox.checked });
+	UpdateTab();
+}
+
+function recommendedLinksChanged() {
+	var checkbox = document.getElementById("enableRecommendedLinksCheckbox");
+	chrome.storage.sync.set({ "ToggleRecommendedLinks": checkbox.checked });
 	UpdateTab();
 }
 
