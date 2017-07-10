@@ -1,5 +1,6 @@
-# CleanerReddit
+# Cleaner Reddit
 A chrome extension that allows users to disable Reddit's sidebar, thumbnails and voting arrows for a cleaner UI.
+Find Cleaner Reddit in the Chrome Web Store [here!](https://chrome.google.com/webstore/detail/cleaner-reddit/fbmjfgjjjpjkkmiclfbhgaemglcjpjlh)
 
 ## Usage
 - Clone CleanerReddit.
