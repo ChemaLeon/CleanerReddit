@@ -80,6 +80,22 @@ function Update(){
     }
   });
 
+  chrome.storage.sync.get(["TogglePostFlairs"], function(items){
+  if (items["TogglePostFlairs"]) {
+      if (typeof $ !== 'undefined') {
+        $( ".linkflairlabel" ).each(function(index) {
+          $(this).hide();
+        });
+      }
+    } else {
+      if (typeof $ !== 'undefined') {
+        $( ".linkflairlabel" ).each(function(index) {
+          $(this).show();
+        });
+      }
+    }
+  });
+
   chrome.storage.sync.get(["ToggleRecommendedLinks"], function(items){
   if (items["ToggleRecommendedLinks"]) {
       if (typeof $ !== 'undefined') {

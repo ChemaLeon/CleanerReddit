@@ -3,7 +3,7 @@
 
 	"name": "Cleaner Reddit",
 	"description": "This extensions allows user to disable Reddit's sidebar, thumbnails and voting arrows for a cleaner UI.",
-	"version": "1.1",
+	"version": "1.2",
 
 	"background": {
 		"scripts": ["popup.js"],

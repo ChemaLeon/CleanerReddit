@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	document.querySelector('#enableSidebarCheckbox').addEventListener('change', checkboxChanged);
 	document.querySelector('#enableThumbnailsCheckbox').addEventListener('change', thumbnailsChanged);
 	document.querySelector('#enableVoteArrowsCheckbox').addEventListener('change', voteArrowsChanged);
+	document.querySelector('#enablePostFlairsCheckbox').addEventListener('change', postFlairsChanged);
 	document.querySelector('#enableRecommendedLinksCheckbox').addEventListener('change', recommendedLinksChanged);
 });
 
@@ -42,6 +43,11 @@ chrome.storage.sync.get(["ToggleThumbnails"], function(items){
 chrome.storage.sync.get(["ToggleVoteArrows"], function(items){
 	var checkbox = document.getElementById("enableVoteArrowsCheckbox");
 	checkbox.checked = items["ToggleVoteArrows"];
+});
+
+chrome.storage.sync.get(["TogglePostFlairs"], function(items){
+	var checkbox = document.getElementById("enablePostFlairsCheckbox");
+	checkbox.checked = items["TogglePostFlairs"];
 });
 
 chrome.storage.sync.get(["ToggleRecommendedLinks"], function(items){
@@ -64,6 +70,12 @@ function thumbnailsChanged() {
 function voteArrowsChanged() {
 	var checkbox = document.getElementById("enableVoteArrowsCheckbox");
 	chrome.storage.sync.set({ "ToggleVoteArrows": checkbox.checked });
+	UpdateTab();
+}
+
+function postFlairsChanged() {
+	var checkbox = document.getElementById("enablePostFlairsCheckbox");
+	chrome.storage.sync.set({ "TogglePostFlairs": checkbox.checked });
 	UpdateTab();
 }
 
